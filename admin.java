@@ -69,11 +69,8 @@ public class admin {
                     ResultSet resultSet = statement.executeQuery(
                             "select password from admin where admin.admin_id='" + textField.getText() + "'");
                     if(resultSet.next()) {
-                        System.out.println(resultSet);
-                        System.out.println(resultSet.getString("password"));
-
                         if (resultSet.getString("password").equals(new String(passwordField.getPassword()))) {
-                            new adminLogin();
+                            new adminLogin(conn);
                             // frame.dispose();
                         }else{
                             textField.setText("");
