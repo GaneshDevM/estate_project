@@ -1,15 +1,23 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
 public class Main implements ActionListener {
     JFrame f;
     JButton btn1,btn2,btn3;
+    static Connection conn;
     public static void main(String[] args){
        new Main();
     }
     Main(){
+      try {
+        conn = (new db_Connection()).getConnection();
+      } catch (Exception e) {
+        System.out.println(e);
+      }
       f = new JFrame("HOME");
       Toolkit tk = f.getToolkit();
       Dimension dm = tk.getScreenSize();
@@ -60,10 +68,10 @@ public class Main implements ActionListener {
         f.dispose();
         try{
           if(e.getSource().equals(btn1))
-          new login("agents");
-          else if(e.getSource().equals(btn2)) new login("buyers");
-          else if(e.getSource().equals(btn3))new login("sellers");
-          else new admin();
+          new login("agents",conn);
+          else if(e.getSource().equals(btn2)) new login("buyers",conn);
+          else if(e.getSource().equals(btn3))new login("sellers",conn);
+          else new admin(conn);
         }catch(Exception err){
           System.out.println(err);
         }
