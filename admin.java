@@ -12,16 +12,8 @@ public class admin {
     private JPasswordField passwordField;
     private Connection connection;
 
-    public admin() throws ClassNotFoundException {
-        // Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/estate";
-        String user = "root";
-        String password = "1234";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public admin(Connection conn){
+        connection =conn;
         System.out.println("connection established");
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
