@@ -98,7 +98,7 @@ public class login implements ActionListener {
          } else if (verifyCredential(info, passcode, user)) {
             frame.dispose();
             if(calledBY==0) new agentAccount(conn,info);
-            else if(calledBY==1) new buyer(conn);//need to be improved
+            else if(calledBY==1) new BuyerPortal(conn,info);//need to be improved
             else new sellerAccount(conn, info);
          }else{
             // incorrect password
